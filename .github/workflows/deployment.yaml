@@ -18,6 +18,7 @@ jobs:
                   rm -rf /opt/services/klickum-process/*
                   cp -r . /opt/services/klickum-process
                   cd .. 
+                  ll
                   cp .env /opt/services/klickum-process/.env
             - name: 🚀 Deploy with docker-compose
               run: |
