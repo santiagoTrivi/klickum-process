@@ -14,7 +14,7 @@ jobs:
 
             - name: 🧹 Limpiar y copiar a /opt/services/api
               run: |
-                  mkdir -p /opt/services/klickum-process
+                  sudo mkdir -p /opt/services/klickum-process
                   rm -rf /opt/services/klickum-process/*
                   cp -r . /opt/services/klickum-process
                   cd .. 
