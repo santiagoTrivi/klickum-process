@@ -1,0 +1,13 @@
+name: Deploy Process
+
+on:
+    push:
+        branches:
+            - main
+jobs:
+    deploy:
+        name: 🔧 Deployment on docker
+        runs-on: kaotice
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
