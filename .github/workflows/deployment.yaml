@@ -15,14 +15,14 @@ jobs:
             - name: 🧹 Limpiar y copiar a /opt/services/api
               run: |
                   echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S mkdir -p /opt/services/klickum-process
-                  rm -rf /opt/services/klickum-process/*
-                  cp -r . /opt/services/klickum-process
+                  echo "${{ secrets.SUDO_PASSWORD }}" | rm -rf /opt/services/klickum-process/*
+                  echo "${{ secrets.SUDO_PASSWORD }}" | cp -r . /opt/services/klickum-process
                   cd .. 
                   ll
-                  cp .env /opt/services/klickum-process/.env
+                  echo "${{ secrets.SUDO_PASSWORD }}" | cp .env /opt/services/klickum-process/.env
             - name: 🚀 Deploy with docker-compose
               run: |
                   echo "⏬ Apagando contenedores actuales..."
-                  docker compose down
+                  echo "${{ secrets.SUDO_PASSWORD }}" | docker compose down
                   echo "🚀 Levantando servicios actualizados..."
-                  docker compose up -d --build
+                  echo "${{ secrets.SUDO_PASSWORD }}" | docker compose up -d --build
