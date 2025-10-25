@@ -14,14 +14,14 @@ jobs:
 
             - name: 🧹 Limpiar y copiar a /opt/services/api
               run: |
-                  sudo mkdir -p /opt/services/klickum-process
-                  sudo rm -rf /opt/services/klickum-process/*
-                  sudo cp -r . /opt/services/klickum-process
-                  sudo cd .. 
-                  sudo cp .env /opt/services/klickum-process/.env
+                  mkdir -p /opt/services/klickum-process
+                  rm -rf /opt/services/klickum-process/*
+                  cp -r . /opt/services/klickum-process
+                  cd .. 
+                  cp .env /opt/services/klickum-process/.env
             - name: 🚀 Deploy with docker-compose
               run: |
                   echo "⏬ Apagando contenedores actuales..."
-                  sudo docker compose down
+                  docker compose down
                   echo "🚀 Levantando servicios actualizados..."
-                  sudo docker compose up -d --build
+                  docker compose up -d --build
