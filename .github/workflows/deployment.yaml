@@ -12,14 +12,15 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: 🧹 Limpiar y copiar a /opt/services/api
+            - name: 🧹 Clean and copy to /opt/services/klickum-process
               run: |
-                  echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S mkdir -p /opt/services/klickum-process
-                  echo "${{ secrets.SUDO_PASSWORD }}" | rm -rf /opt/services/klickum-process/*
-                  echo "${{ secrets.SUDO_PASSWORD }}" | cp -r . /opt/services/klickum-process
-                  cd .. 
-                  ll
-                  echo "${{ secrets.SUDO_PASSWORD }}" | cp .env /opt/services/klickum-process/.env
+                echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S mkdir -p /opt/services/klickum-process
+                echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S rm -rf /opt/services/klickum-process/*
+                echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S rsync -av --exclude='.git' --exclude='.github' ./ /opt/services/klickum-process/
+                cd ../..
+                if [ -f .env ]; then
+                  echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S cp .env /opt/services/klickum-process/.env
+                fi
             - name: 🚀 Deploy with docker-compose
               run: |
                   echo "⏬ Apagando contenedores actuales..."
