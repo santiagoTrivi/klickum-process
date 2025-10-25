@@ -23,6 +23,7 @@ jobs:
                 fi
             - name: 🚀 Deploy with docker-compose
               run: |
+                  cd /opt/services/klickum-process
                   echo "⏬ Apagando contenedores actuales..."
                   echo "${{ secrets.SUDO_PASSWORD }}" | docker compose down
                   echo "🚀 Levantando servicios actualizados..."
