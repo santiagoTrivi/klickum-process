@@ -25,6 +25,6 @@ jobs:
               run: |
                   cd /opt/services/klickum-process
                   echo "⏬ Apagando contenedores actuales..."
-                  echo "${{ secrets.SUDO_PASSWORD }}" | docker compose down
+                  echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S docker compose down
                   echo "🚀 Levantando servicios actualizados..."
-                  echo "${{ secrets.SUDO_PASSWORD }}" | docker compose up -d --build
+                  echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S docker compose up -d --build
